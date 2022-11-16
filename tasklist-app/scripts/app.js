@@ -62,6 +62,10 @@ function storeInStorage(task,subject){
     }
     tasks.push(task)
     subjects.push(subject)
+    document.cookie = `tasks=${JSON.stringify(tasks)}`
+    document.cookie = `subjects=${JSON.stringify(subjects)}`
+    sessionStorage.setItem('tasks',JSON.stringify(tasks))
+    sessionStorage.setItem('subjects',JSON.stringify(subjects))
     localStorage.setItem('tasks',JSON.stringify(tasks))
     localStorage.setItem('subjects',JSON.stringify(subjects))
 }
@@ -87,6 +91,10 @@ function removeTaskStorage(taskItem){
             subjects.splice(index,1)
         }
     })
+    document.cookie = `tasks=${JSON.stringify(tasks)}`
+    document.cookie = `subjects=${JSON.stringify(subjects)}`
+    sessionStorage.setItem('tasks',JSON.stringify(tasks))
+    sessionStorage.setItem('subjects',JSON.stringify(subjects))
     localStorage.setItem('tasks',JSON.stringify(tasks))
     localStorage.setItem('subjects',JSON.stringify(subjects))
 }
@@ -97,6 +105,9 @@ function clearTasks(e){
             taskList.removeChild(taskList.firstChild)
         }
         localStorage.clear()
+        sessionStorage.clear()
+        const output = document.getElementById('cookies')
+        output.textContent = ''
     }
 }
 
